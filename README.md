@@ -7,6 +7,7 @@ Scareware creado en vbs que deja inutilizado el pc.
 Este malware se ha creado con fines educativos. Si se utiliza con otros fines no me hago responsable de los daños causados.
 ```
 
+## **Funcionamiento**
 Su funcionamiento es el siguiente:
  1. Primero se copia a la carpeta de Inicio de Windows con la función ```copyToStartUp``` para que cada vez que se inice el PC se vuelva a ejecutar.
  2. Abre una página web aleatoria especificada anteriormente en un array llamado ```urls```.
