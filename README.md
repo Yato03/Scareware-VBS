@@ -4,7 +4,8 @@ Scareware creado en vbs que deja inutilizado el pc.
 
 ## **ATENCIÓN**
 ```
-Este malware se ha creado con fines educativos. Si se utiliza con otros fines no me hago responsable de los daños causados.
+Este malware se ha creado con fines educativos. Si se utiliza con
+otros fines no me hago responsable de los daños causados.
 ```
 
 ## **Funcionamiento**
